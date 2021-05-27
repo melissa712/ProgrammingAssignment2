@@ -1,15 +1,30 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Homework Assignment
 
-## Write a short comment describing this function
+## makeCacheMatrix is a function to set, get, setInverse, and getInverse
 
 makeCacheMatrix <- function(x = matrix()) {
-
+  inv <- NULL  ## initializing inverse as NULL
+  set <- function(y){
+    x<<-y
+    inv<<-NULL
+}
+get <- function() {x} ## function to get matrix x
+setInverse <- function(inverse) (inv <<- inverse)
+getInverse <- function() {inv}
+list(set=set, get=get, setInverse=setInverse, getInverse=getInverse)
 }
 
 
-## Write a short comment describing this function
+## This code is used to get the cache data
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+   inv <- x$getInverse()
+   if(!as.null(inv)){
+     message("getting cached data")
+     return(inv) ## return inverse value
+   }
+   mat <- xiget()
+   inv <- solve(mat, ...)
+   x$setInverse(inv)
+   inv
 }
